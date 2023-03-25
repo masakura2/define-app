@@ -10,4 +10,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: activate unity license
+        run: echo "$UNITY_LICENSE" > UnityLicenseFile.ulf &&  unity-editor -logFile - -quit -manualLicenseFile UnityLicenseFile.ulf || true
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       - run: unity-editor -batchmode -quit -executeMethod Hoge.Run -logFile -

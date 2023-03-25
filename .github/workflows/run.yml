@@ -1,0 +1,13 @@
+name: run
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: unityci/editor:ubuntu-2020.3.36.f1-ios-1
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - run: unity-editor -batchmode -quit -executeMethod Hoge.Run -logFile -
